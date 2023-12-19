@@ -16,17 +16,14 @@
                                VerticalAlignment="Stretch"
                                Margin="-5 0 0 0" />
 
-                        <ComboBox x:Name="textBox" 
-                                  ItemsSource="{Binding students}"
-                                  DisplayMemberPath="StudentName"
-                                  SelectedValuePath="StudentId"
-                                  HorizontalAlignment="Stretch"
-                                  VerticalAlignment="Center"
-                                  materialdesign:HintAssist.IsFloating="False"
-                                  materialdesign:ColorZoneAssist.Mode="Dark"
-                                  materialdesign:HintAssist.HintOpacity="0.10"
-                                  materialdesign:HintAssist.FontFamily="Century Gothic"
-                                  Foreground="{TemplateBinding Foreground}" />
+                        <ComboBox x:Name="textBox" ItemsSource="{Binding students}" DisplayMemberPath="StudentName"
+                                 HorizontalAlignment="Stretch"
+                                 VerticalAlignment="Center"
+                                 materialdesign:HintAssist.IsFloating="False"
+                                 materialdesign:ColorZoneAssist.Mode="Dark"
+                                 materialdesign:HintAssist.HintOpacity="0.10"
+                                 materialdesign:HintAssist.FontFamily="Century Gothic"
+                                 Foreground="{TemplateBinding Foreground}" />
                     </StackPanel>
                 </ControlTemplate>
             </Setter.Value>

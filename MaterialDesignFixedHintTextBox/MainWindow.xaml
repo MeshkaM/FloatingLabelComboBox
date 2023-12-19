@@ -24,7 +24,6 @@
                                          materialdesign:HintAssist.Hint="Student"
                                          FontSize="20"
                                          LabelFontSize="13"
-                                       
             />
             <local:FloatingLabelComboBox Width="160" 
                                          Margin="40 0 0 0"
