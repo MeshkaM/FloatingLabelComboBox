@@ -1,0 +1,39 @@
+﻿<Window x:Class="FloatingLabelComboBox.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FloatingLabelComboBox.CustomControls"
+        xmlns:materialdesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+
+
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF06013F" Offset="1"/>
+                <GradientStop Color="#FF040F2E"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <StackPanel Margin="30" Orientation="Horizontal" Height="80">
+            <local:FloatingLabelComboBox Width="160" 
+                                         LabelText="Student" 
+                                         Foreground="AliceBlue" 
+                                         LabelForeground="LimeGreen"
+                                         materialdesign:HintAssist.Hint="Student"
+                                         FontSize="20"
+                                         LabelFontSize="13"
+            />
+            <local:FloatingLabelComboBox Width="160" 
+                                         Margin="40 0 0 0"
+                                         LabelText="Blood Group" 
+                                         Foreground="AliceBlue" 
+                                         LabelForeground="LimeGreen"
+                                         materialdesign:HintAssist.Hint="Blood Group"
+                                         FontSize="20"
+                                         LabelFontSize="13"
+            />
+        </StackPanel>
+    </Grid>
+</Window>
