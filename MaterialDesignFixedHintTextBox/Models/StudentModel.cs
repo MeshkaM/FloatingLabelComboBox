@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace MaterialDesignFixedHintTextBox.Models
@@ -13,7 +15,7 @@ namespace MaterialDesignFixedHintTextBox.Models
             {
                 if (value == this._studentId) return;
                 this._studentId = value;
-                OnPropertyChanged(nameof(_studentId));
+                OnPropertyChanged(nameof(StudentId));
             }
         }
 
@@ -25,16 +27,9 @@ namespace MaterialDesignFixedHintTextBox.Models
             {
                 if (value == this._studentName) return;
                 this._studentName = value;
-                OnPropertyChanged(nameof(_studentName));
+                OnPropertyChanged(nameof(StudentName));
             }
         }
-
-
-
-        //************************************************************************************************************************<<<<<<<<<>>>>>
-        //************************************************************************************************************************<<<<<<<<<>>>>>
-        //************************************************************************************************************************<<<<<<<<<>>>>>
-
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -42,13 +37,6 @@ namespace MaterialDesignFixedHintTextBox.Models
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
-        //protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
-        //{
-        //    if (EqualityComparer<T>.Default.Equals(field, value)) return false;
-        //    field = value;
-        //    OnPropertyChanged(propertyName);
-        //    return true;
-        //}
     }
+
 }

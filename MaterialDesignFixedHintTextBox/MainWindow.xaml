@@ -8,7 +8,6 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
 
-
     <Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -16,24 +15,50 @@
                 <GradientStop Color="#FF040F2E"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <StackPanel Margin="30" Orientation="Horizontal" Height="80">
-            <local:FloatingLabelComboBox Width="160" 
+        <StackPanel Margin="40">
+            <Label Content="Students Grade" Foreground="WhiteSmoke" FontSize="20"/>
+            <StackPanel Margin="5 30 0 0" Orientation="Horizontal" Height="80">
+                <local:FloatingLabelComboBox  x:Name="CmbStudentName"
+                                         Width="160"
                                          LabelText="Student" 
                                          Foreground="AliceBlue" 
                                          LabelForeground="LimeGreen"
                                          materialdesign:HintAssist.Hint="Student"
                                          FontSize="20"
                                          LabelFontSize="13"
-            />
-            <local:FloatingLabelComboBox Width="160" 
+                             SelectedValue="{Binding SelectedStudent.StudentID,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                             SelectedValuePath="StudentId"
+                             DisplayMemberPath="StudentName"
+                />
+                <local:FloatingLabelComboBox x:Name="CmbStudentGrade"
+                                         Width="160" 
                                          Margin="40 0 0 0"
-                                         LabelText="Blood Group" 
+                                         LabelText="Grade" 
                                          Foreground="AliceBlue" 
                                          LabelForeground="LimeGreen"
-                                         materialdesign:HintAssist.Hint="Blood Group"
+                                         materialdesign:HintAssist.Hint="Grade"
                                          FontSize="20"
                                          LabelFontSize="13"
-            />
+                                         SelectedItem="{Binding SelectedStudent.StudentsGrade,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <RepeatButton
+                            x:Name="NavigatePreviousButton"
+                            Width="25" Height="25"
+                            Click="RepeatButton_Click"
+                    >
+                    <materialdesign:PackIcon Kind="NavigateBefore" Width="30" Height="30" Margin="-20 -5 0 0"/>
+                </RepeatButton>
+                <RepeatButton
+                            x:Name="NavigateNextButton"
+                            Width="25" Height="25"
+                            Click="RepeatButton_Click"
+                            Margin="20 0 0 0"
+                            >
+                    <materialdesign:PackIcon Kind="NavigateNext" Width="30" Height="30" Margin="-20 -5 0 0"/>
+                </RepeatButton>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Window>

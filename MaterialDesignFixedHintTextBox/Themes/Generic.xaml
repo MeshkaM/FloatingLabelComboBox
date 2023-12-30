@@ -14,16 +14,24 @@
                                Foreground="{TemplateBinding LabelForeground}"
                                FontSize="{TemplateBinding LabelFontSize}"
                                VerticalAlignment="Stretch"
-                               Margin="-5 0 0 0" />
+                               Margin="-5 0 0 0" 
+                        />
 
-                        <ComboBox x:Name="textBox" ItemsSource="{Binding students}" DisplayMemberPath="StudentName"
-                                 HorizontalAlignment="Stretch"
-                                 VerticalAlignment="Center"
-                                 materialdesign:HintAssist.IsFloating="False"
-                                 materialdesign:ColorZoneAssist.Mode="Dark"
-                                 materialdesign:HintAssist.HintOpacity="0.10"
-                                 materialdesign:HintAssist.FontFamily="Century Gothic"
-                                 Foreground="{TemplateBinding Foreground}" />
+                        <ComboBox x:Name="comboBox"
+                                  Text="{TemplateBinding Text}"
+                                  ItemsSource="{TemplateBinding ItemsSource}"
+                                  SelectedItem="{TemplateBinding SelectedItem}"
+                                  SelectedValuePath="{TemplateBinding SelectedValuePath}"
+                                  SelectedValue="{TemplateBinding SelectedValue}" 
+                                  DisplayMemberPath="{TemplateBinding DisplayMemberPath}"
+                                  HorizontalAlignment="Stretch"
+                                  VerticalAlignment="Center"
+                                  materialdesign:HintAssist.IsFloating="False"
+                                  materialdesign:ColorZoneAssist.Mode="Dark"
+                                  materialdesign:HintAssist.HintOpacity="0.10"
+                                  materialdesign:HintAssist.FontFamily="Century Gothic"
+                                  Foreground="{TemplateBinding Foreground}">
+                        </ComboBox>
                     </StackPanel>
                 </ControlTemplate>
             </Setter.Value>
