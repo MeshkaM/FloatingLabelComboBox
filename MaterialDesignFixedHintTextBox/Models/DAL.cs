@@ -55,6 +55,7 @@ namespace MaterialDesignFixedHintTextBox
                 {
                     var students = LoadStudents();
                     var grades = LoadGrades();
+                    var subjects = LoadSubjects();
                     studentsGrades = new List<StudentsGradesModel>(students.Count * 2);
 
                     Random random = new Random();
@@ -62,14 +63,19 @@ namespace MaterialDesignFixedHintTextBox
                     foreach (var student in students)
                     {
                         int countGrades = random.Next(1, 5);
-                        for (int i = 0; i < countGrades; i++)
+                        int i = 0;
+                        foreach (var subject in subjects.OrderBy(_ => random.Next()))
                         {
                             studentsGrades.Add(new StudentsGradesModel()
                             {
                                 Id = ++id,
                                 StudentID = student.Id,
-                                StudentsGrade = grades[random.Next(grades.Count)]
+                                StudentsGrade = grades[random.Next(grades.Count)],
+                                Subject = subject,
                             });
+                            i++;
+                            if (i >= countGrades)
+                                break;
                         }
                     }
                 }
@@ -90,9 +96,28 @@ namespace MaterialDesignFixedHintTextBox
             {
                 if (grades == null)
                 {
-                    grades = new List<string>() { "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-", "E" };
+                    grades = new List<string>("A A- B+ B B- C+ C C- D+ D D- E".Split()) { };
                 }
                 return grades;
+            }
+
+            using (IDbConnection conn = new SqlConnection(ConnString))
+            {
+                if (conn.State == ConnectionState.Closed) conn.Open();
+                return conn.Query<string>("SELECT * FROM Grades").ToList();
+            }
+
+        }
+        private static List<string> subjects;
+        public List<string> LoadSubjects()
+        {
+            if (isWithoutDB)
+            {
+                if (subjects == null)
+                {
+                    subjects = new List<string>("Mathematics Literature Physics Chemistry Astronomy Music Dancing".Split());
+                }
+                return subjects;
             }
 
             using (IDbConnection conn = new SqlConnection(ConnString))

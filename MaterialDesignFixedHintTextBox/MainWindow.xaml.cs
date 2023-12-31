@@ -1,96 +1,119 @@
-﻿using MaterialDesignFixedHintTextBox;
-using MaterialDesignFixedHintTextBox.Models;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
+﻿using MaterialDesignFixedHintTextBox.Models;
+using MaterialDesignFixedHintTextBox.ViewModels;
 using System.Windows;
-using System.Windows.Input;
+using System.Windows.Data;
 
 namespace FloatingLabelComboBox
 {
-    public partial class MainWindow : Window, INotifyPropertyChanged
+    public partial class MainWindow : Window/*, INotifyPropertyChanged*/
     {
-        private readonly DAL dal;
-        private readonly ObservableCollection<StudentModel> students;
-        private readonly ObservableCollection<StudentsGradesModel> studentsGrades;
-        private readonly List<string> grades;
+        //private readonly DAL dal;
+        //private readonly ObservableCollection<StudentModel> students;
+        //private readonly ObservableCollection<StudentsGradesModel> studentsGrades;
+        //private readonly List<string> grades;
 
-        // Add an index to keep track of the current position
-        private int currentIndex = 0;
+        //// Add an index to keep track of the current position
+        //private int currentIndex = 0;
 
+        private readonly StudentsViewModel vm;
+        private readonly CollectionViewSource grades;
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = this; // Set the DataContext to this MainWindow
 
-            dal = new DAL();
-            students = new ObservableCollection<StudentModel>(dal.LoadStudents());
-            studentsGrades = new ObservableCollection<StudentsGradesModel>(dal.LoadStudentsGrades());
-            grades = new List<string>(dal.LoadGrades());
+            grades = (CollectionViewSource)FindResource(nameof(grades));
+            vm = (StudentsViewModel)FindResource(nameof(vm));
+            ChangeFilter(null);
 
-            CmbStudentName.ItemsSource = students;
-            CmbStudentGrade.ItemsSource = grades;
+            //DataContext = this; // Set the DataContext to this MainWindow
 
-            // Set the initial selected item
-            SelectedStudent = studentsGrades[currentIndex];
+            //dal = new DAL();
+            //students = new ObservableCollection<StudentModel>(dal.LoadStudents());
+            //studentsGrades = new ObservableCollection<StudentsGradesModel>(dal.LoadStudentsGrades());
+            //grades = new List<string>(dal.LoadGrades());
+
+            //CmbStudentName.ItemsSource = students;
+            //CmbStudentGrade.ItemsSource = grades;
+
+            //// Set the initial selected item
+            //SelectedStudent = studentsGrades[currentIndex];
         }
 
-        private void RepeatButton_Click(object sender, RoutedEventArgs e)
+        private void ChangeFilter(int? studentId)
         {
-            // Check the sender to determine which button was clicked
-            if (sender == NavigateNextButton)
+            if (studentId is null)
             {
-                // Increment the index and ensure it doesn't exceed the bounds of the list
-                currentIndex = Math.Min(currentIndex + 1, studentsGrades.Count - 1);
+                grades.View.Filter = _ => false;
             }
-            else if (sender == NavigatePreviousButton)
+            else
             {
-                // Decrement the index and ensure it doesn't go below 0
-                currentIndex = Math.Max(currentIndex - 1, 0);
+                int id = studentId.Value;
+                grades.View.Filter = obj => obj is StudentsGradesModel studentsGrades &&
+                                            studentsGrades.StudentID == id;
             }
 
-            // Update the selected item in the ComboBox
-            SelectedStudent = studentsGrades[currentIndex];
+            grades.View.MoveCurrentToFirst();
         }
 
-
-        //************************************************************************************************************************<<<<<<<<<>>>>>
-        //************************************************************************************************************************<<<<<<<<<>>>>>
-        //************************************************************************************************************************<<<<<<<<<>>>>>
-
-
-        private StudentsGradesModel _selectedStudent;
-        public StudentsGradesModel SelectedStudent
+        private void OnSelectedStudentChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            get => _selectedStudent;
-            set
-            {
-                _selectedStudent = value;
-                OnPropertyChanged();
-            }
+            ChangeFilter((CmbStudentName.SelectedItem as StudentModel)?.Id);
         }
 
-        private ObservableCollection<string> _Grade;
-        public ObservableCollection<string> Grade
-        {
-            get => _Grade;
-            set
-            {
-                _Grade = value;
-                OnPropertyChanged();
-            }
-        }
+        //private void RepeatButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    // Check the sender to determine which button was clicked
+        //    if (sender == NavigateNextButton)
+        //    {
+        //        // Increment the index and ensure it doesn't exceed the bounds of the list
+        //        currentIndex = Math.Min(currentIndex + 1, studentsGrades.Count - 1);
+        //    }
+        //    else if (sender == NavigatePreviousButton)
+        //    {
+        //        // Decrement the index and ensure it doesn't go below 0
+        //        currentIndex = Math.Max(currentIndex - 1, 0);
+        //    }
 
-        //------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        //    // Update the selected item in the ComboBox
+        //    SelectedStudent = studentsGrades[currentIndex];
+        //}
 
-        public event PropertyChangedEventHandler PropertyChanged;
 
-        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+        ////************************************************************************************************************************<<<<<<<<<>>>>>
+        ////************************************************************************************************************************<<<<<<<<<>>>>>
+        ////************************************************************************************************************************<<<<<<<<<>>>>>
+
+
+        //private StudentsGradesModel _selectedStudent;
+        //public StudentsGradesModel SelectedStudent
+        //{
+        //    get => _selectedStudent;
+        //    set
+        //    {
+        //        _selectedStudent = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
+
+        //private ObservableCollection<string> _Grade;
+        //public ObservableCollection<string> Grade
+        //{
+        //    get => _Grade;
+        //    set
+        //    {
+        //        _Grade = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
+
+        ////------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+        //public event PropertyChangedEventHandler PropertyChanged;
+
+        //private void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        //{
+        //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        //}
 
     }
 }
