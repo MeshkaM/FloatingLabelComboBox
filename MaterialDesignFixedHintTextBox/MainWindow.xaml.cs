@@ -12,8 +12,10 @@ namespace FloatingLabelComboBox
 {
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
-        List<StudentModel> students = new List<StudentModel>(DAL.LoadStudents());
-        List<StudentsGradesModel> studentsGrades = new List<StudentsGradesModel>(DAL.LoadStudentsGrades());
+        private readonly DAL dal;
+        private readonly ObservableCollection<StudentModel> students;
+        private readonly ObservableCollection<StudentsGradesModel> studentsGrades;
+        private readonly List<string> grades;
 
         // Add an index to keep track of the current position
         private int currentIndex = 0;
@@ -23,8 +25,13 @@ namespace FloatingLabelComboBox
             InitializeComponent();
             DataContext = this; // Set the DataContext to this MainWindow
 
+            dal = new DAL();
+            students = new ObservableCollection<StudentModel>(dal.LoadStudents());
+            studentsGrades = new ObservableCollection<StudentsGradesModel>(dal.LoadStudentsGrades());
+            grades = new List<string>(dal.LoadGrades());
+
             CmbStudentName.ItemsSource = students;
-            CmbStudentGrade.ItemsSource = (Grade = new ObservableCollection<string>() { "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-", "E" });
+            CmbStudentGrade.ItemsSource = grades;
 
             // Set the initial selected item
             SelectedStudent = studentsGrades[currentIndex];
