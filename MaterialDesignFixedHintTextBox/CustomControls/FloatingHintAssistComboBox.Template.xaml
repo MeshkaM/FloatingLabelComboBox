@@ -14,8 +14,6 @@
                                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
     </ControlTemplate>
     <Style TargetType="Button" x:Key="ComboBox.ButtonList.Style">
-        <!--<Setter Property="" Value=""/>
-        <Setter Property="" Value=""/>-->
         <Setter Property="Template" Value="{StaticResource ComboBox.ButtonList.Template}"/>
         <Setter Property="Foreground" Value="{Binding Foreground, RelativeSource={RelativeSource AncestorType=ComboBoxItem}}"/>
         <Setter Property="Background" Value="White"/>
@@ -26,12 +24,9 @@
                 <ControlTemplate TargetType="{x:Type local:FloatingHintAssistComboBox}">
                     <StackPanel x:Name="PART_MainPanel" FlowDirection="LeftToRight">
                         <StackPanel.Resources>
-                            <!--<CollectionViewSource x:Key="items" Source="{Binding ItemsSource, RelativeSource={RelativeSource  TemplatedParent}, Mode=OneWay}"/>-->
                             <Button x:Key="button" Style="{StaticResource ComboBox.ButtonList.Style}"/>
                             <CompositeCollection x:Key="source">
-                                <!--<ComboBoxItem Content="{StaticResource button}"/>-->
                                 <ComboBoxItem Content="{StaticResource button}"/>
-                                <!--<CollectionContainer Collection="{Binding Source={StaticResource items}}"/>-->
                                 <CollectionContainer/>
                             </CompositeCollection>
                         </StackPanel.Resources>

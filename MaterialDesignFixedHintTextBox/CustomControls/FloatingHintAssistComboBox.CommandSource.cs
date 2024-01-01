@@ -1,5 +1,4 @@
-﻿using MaterialDesignThemes.Wpf;
-using System;
+﻿using System;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
@@ -11,11 +10,6 @@ namespace FloatingHintAssistComboBox.CustomControls
 {
     public partial class FloatingHintAssistComboBox : ICommandSource
     {
-        //public ICommand Command { get; }
-        //public object CommandParameter { get; }
-        //public IInputElement CommandTarget { get; }
-
-
         public ICommand Command
         {
             get => (ICommand)GetValue(CommandProperty);
@@ -29,8 +23,6 @@ namespace FloatingHintAssistComboBox.CustomControls
                 typeof(ICommand),
                 typeof(FloatingHintAssistComboBox),
                 new PropertyMetadata(null));
-
-
 
         public object CommandParameter
         {
@@ -46,8 +38,6 @@ namespace FloatingHintAssistComboBox.CustomControls
                 typeof(FloatingHintAssistComboBox),
                 new PropertyMetadata(null));
 
-
-
         public IInputElement CommandTarget
         {
             get => (IInputElement)GetValue(CommandTargetProperty);
@@ -61,9 +51,6 @@ namespace FloatingHintAssistComboBox.CustomControls
                 typeof(IInputElement),
                 typeof(FloatingHintAssistComboBox),
                 new PropertyMetadata(null));
-
-
-
 
         public bool IsButtonVisibility
         {
@@ -79,8 +66,6 @@ namespace FloatingHintAssistComboBox.CustomControls
                 typeof(FloatingHintAssistComboBox),
                 new PropertyMetadata(true));
 
-
-
         public object ButtonContent
         {
             get => GetValue(ButtonContentProperty);
@@ -94,7 +79,6 @@ namespace FloatingHintAssistComboBox.CustomControls
                 typeof(object),
                 typeof(FloatingHintAssistComboBox),
                 new PropertyMetadata(null));
-
 
         public override void OnApplyTemplate()
         {
@@ -115,8 +99,6 @@ namespace FloatingHintAssistComboBox.CustomControls
             ItemsControl comboBox = (ItemsControl)GetTemplateChild("comboBox");
             Items = comboBox.Items;
         }
-
-
 
         private static readonly BooleanToVisibilityConverter booleanToVisibility = new BooleanToVisibilityConverter();
         private readonly CommandTargetConverter targetConverter;
@@ -140,8 +122,6 @@ namespace FloatingHintAssistComboBox.CustomControls
             }
         }
 
-
-
         public ItemCollection Items
         {
             get => (ItemCollection)GetValue(ItemsProperty);
@@ -157,7 +137,5 @@ namespace FloatingHintAssistComboBox.CustomControls
                 new PropertyMetadata(null));
 
         public static readonly DependencyProperty ItemsProperty = ItemsPropertyKey.DependencyProperty;
-
-
     }
 }

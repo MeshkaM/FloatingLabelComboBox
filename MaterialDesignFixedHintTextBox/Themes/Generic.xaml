@@ -3,45 +3,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:FloatingLabelComboBox">
     <ResourceDictionary.MergedDictionaries>
-        <!--<ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Dark.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Green.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml"/>-->
-
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignFixedHintTextBox;component/CustomControls/FloatingHintAssistComboBox.Template.xaml"/>
     </ResourceDictionary.MergedDictionaries>
-
-
-    <!--<Style TargetType="{x:Type cc:FloatingHintAssistComboBox}">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type cc:FloatingHintAssistComboBox}">
-                    <StackPanel FlowDirection="LeftToRight">
-                        <Label Content="{TemplateBinding LabelText}"
-                               Foreground="{TemplateBinding LabelForeground}"
-                               FontSize="{TemplateBinding LabelFontSize}"
-                               VerticalAlignment="Stretch"
-                               Margin="-5 0 0 0" 
-                        />
-
-                        <ComboBox x:Name="comboBox"
-                                  Text="{TemplateBinding Text}"
-                                  ItemsSource="{TemplateBinding ItemsSource}"
-                                  SelectedItem="{Binding SelectedItem, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
-                                  SelectedValuePath="{TemplateBinding SelectedValuePath}"
-                                  SelectedValue="{Binding SelectedValue, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" 
-                                  DisplayMemberPath="{TemplateBinding DisplayMemberPath}"
-                                  HorizontalAlignment="Stretch"
-                                  VerticalAlignment="Center"
-                                  materialdesign:HintAssist.IsFloating="False"
-                                  materialdesign:ColorZoneAssist.Mode="Dark"
-                                  materialdesign:HintAssist.HintOpacity="0.10"
-                                  materialdesign:HintAssist.FontFamily="Century Gothic"
-                                  Foreground="{TemplateBinding Foreground}">
-                        </ComboBox>
-                    </StackPanel>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>-->
 </ResourceDictionary>
