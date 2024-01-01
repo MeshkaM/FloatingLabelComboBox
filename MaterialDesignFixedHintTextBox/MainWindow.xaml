@@ -3,15 +3,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:FloatingLabelComboBox.CustomControls"
         xmlns:materialdesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        xmlns:viewmodels="clr-namespace:MaterialDesignFixedHintTextBox.ViewModels" xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:viewmodels="clr-namespace:MaterialDesignFixedHintTextBox.ViewModels"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:cc="clr-namespace:FloatingHintAssistComboBox.CustomControls"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
         DataContext="{DynamicResource vm}">
     <Window.Resources>
         <viewmodels:StudentsViewModel x:Key="vm"/>
-        <CollectionViewSource x:Key="grades" Source="{Binding StudentsGrades}"/>
         <sys:Int32 x:Key="inc">1</sys:Int32>
         <sys:Int32 x:Key="dec">-1</sys:Int32>
     </Window.Resources>
@@ -25,65 +25,70 @@
         <StackPanel Margin="40">
             <Label Content="Students Grade" Foreground="WhiteSmoke" FontSize="20"/>
             <UniformGrid Rows="1" Margin="5 30 0 0" Height="80">
-                <local:FloatingLabelComboBox
+                <cc:FloatingHintAssistComboBox
                     x:Name="CmbStudentName"
                     Width="160"
-                    LabelText="Student" 
+                    HintAssistText="Student" 
                     Foreground="AliceBlue" 
-                    LabelForeground="LimeGreen"
+                    HintAssistForeground="LimeGreen"
                     materialdesign:HintAssist.Hint="Student"
                     FontSize="20"
-                    LabelFontSize="13"
+                    HintAssistFontSize="13"
                     ItemsSource="{Binding Students}"
                     SelectedItem="{Binding SelectedStudent}"
                     DisplayMemberPath="StudentName"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
-                    Selector.SelectionChanged="OnSelectedStudentChanged"
+                    Command="{Binding AddStudent}"
+                    ButtonContent="Add new Student"
                 />
-                <local:FloatingLabelComboBox
+                <cc:FloatingHintAssistComboBox
                     x:Name="CmbStudentGrades"
                     Width="160"
-                    LabelText="Grades"
+                    HintAssistText="Grades"
                     Foreground="AliceBlue" 
-                    LabelForeground="LimeGreen"
+                    HintAssistForeground="LimeGreen"
                     materialdesign:HintAssist.Hint="Student"
                     FontSize="20"
-                    LabelFontSize="13"
-                    ItemsSource="{Binding Mode=OneWay, Source={StaticResource grades}}"
+                    HintAssistFontSize="13"
+                    ItemsSource="{Binding SelectedStudentsGrades}"
                     SelectedItem="{Binding SelectedStudentsGrade, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     HorizontalAlignment="Center" VerticalAlignment="Center"
+                    DisplayMemberPath="DisplayMember"
+                    Command="{Binding AddGrade}"
+                    ButtonContent="Add a grade to a Student"
                 />
-                <local:FloatingLabelComboBox
+                <cc:FloatingHintAssistComboBox
                     x:Name="CmbStudentGrade"
                     Width="160" 
-                    LabelText="Grade" 
+                    HintAssistText="Grade" 
                     Foreground="AliceBlue" 
-                    LabelForeground="LimeGreen"
+                    HintAssistForeground="LimeGreen"
                     materialdesign:HintAssist.Hint="Grade"
                     FontSize="20"
-                    LabelFontSize="13"
+                    HintAssistFontSize="13"
                     ItemsSource="{Binding Grades}"
                     SelectedItem="{Binding SelectedStudentsGrade.StudentsGrade, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     HorizontalAlignment="Center" VerticalAlignment="Center"
+                    IsButtonVisibility="False"
                 />
             </UniformGrid>
             <StackPanel Orientation="Horizontal">
-                <!--<RepeatButton
-                            x:Name="NavigatePreviousButton"
-                            Width="25" Height="25"
-                            Click="RepeatButton_Click"
+                <RepeatButton
+                    Width="25" Height="25"
+                    Command="{Binding RepeatGrade}"
+                    CommandParameter="{StaticResource dec}"
                     >
                     <materialdesign:PackIcon Kind="NavigateBefore" Width="30" Height="30" Margin="-20 -5 0 0"/>
                 </RepeatButton>
                 <RepeatButton
-                            x:Name="NavigateNextButton"
-                            Width="25" Height="25"
-                            Click="RepeatButton_Click"
-                            Margin="20 0 0 0"
+                    Width="25" Height="25"
+                    Command="{Binding RepeatGrade}"
+                    CommandParameter="{StaticResource inc}"
+                    Margin="20 0 0 0"
                             >
                     <materialdesign:PackIcon Kind="NavigateNext" Width="30" Height="30" Margin="-20 -5 0 0"/>
-                </RepeatButton>-->
+                </RepeatButton>
             </StackPanel>
         </StackPanel>
     </Grid>

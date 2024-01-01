@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FloatingLabelComboBox", "Ma
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonClassesWpf", "CommonClassesWpf\CommonClassesWpf.csproj", "{781E79D4-D9C6-4792-87B7-EEE2D74846F7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp1", "WpfApp1\WpfApp1.csproj", "{A3245DAE-945E-422C-A79A-7FBAD83C7DFA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{781E79D4-D9C6-4792-87B7-EEE2D74846F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{781E79D4-D9C6-4792-87B7-EEE2D74846F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{781E79D4-D9C6-4792-87B7-EEE2D74846F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3245DAE-945E-422C-A79A-7FBAD83C7DFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3245DAE-945E-422C-A79A-7FBAD83C7DFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3245DAE-945E-422C-A79A-7FBAD83C7DFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3245DAE-945E-422C-A79A-7FBAD83C7DFA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
