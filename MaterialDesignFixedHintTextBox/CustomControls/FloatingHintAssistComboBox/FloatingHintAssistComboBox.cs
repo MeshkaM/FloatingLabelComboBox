@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace FloatingHintAssistComboBox.CustomControls
+namespace CustomControls
 {
     public partial class FloatingHintAssistComboBox : Control
     {

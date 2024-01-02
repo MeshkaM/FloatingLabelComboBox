@@ -10,12 +10,12 @@ namespace MaterialDesignFixedHintTextBox.Models
         public string StudentsGrade { get => Get<string>(); set => Set(value); }
         public string Subject { get => Get<string>(); set => Set(value); }
 
-        public string DisplayMember { get => Get<string>(); private set => Set(value); }
+        //public string DisplayMember { get => Get<string>(); private set => Set(value); }
 
-        protected override void OnPropertyChanged(string propertyName, object oldValue, object newValue)
-        {
-            base.OnPropertyChanged(propertyName, oldValue, newValue);
-            DisplayMember = $"{Subject}: {StudentsGrade}";
-        }
+        //protected override void OnPropertyChanged(string propertyName, object oldValue, object newValue)
+        //{
+        //    base.OnPropertyChanged(propertyName, oldValue, newValue);
+        //    DisplayMember = $"{Subject}: {StudentsGrade}";
+        //}
     }
 }

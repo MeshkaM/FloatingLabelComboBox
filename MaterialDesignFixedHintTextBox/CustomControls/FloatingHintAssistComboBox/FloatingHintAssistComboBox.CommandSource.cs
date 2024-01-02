@@ -6,7 +6,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Input;
 
-namespace FloatingHintAssistComboBox.CustomControls
+namespace CustomControls
 {
     public partial class FloatingHintAssistComboBox : ICommandSource
     {

@@ -1,29 +1,23 @@
 ﻿using MaterialDesignFixedHintTextBox.Models;
 using Simplified;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace MaterialDesignFixedHintTextBox.ViewModels
 {
-    public class StudentsViewModel : ViewModelBase
+    public class StudentsViewModel1 : ViewModelBase
     {
         private readonly DAL dal;
         public IReadOnlyList<string> Grades { get; }
         public ReadOnlyObservableCollection<StudentModel> Students { get; }
         public ReadOnlyObservableCollection<StudentsGradesModel> StudentsGrades { get; }
-        public ReadOnlyObservableCollection<StudentsGradesModel> SelectedStudentsGrades { get; }
 
         private readonly List<string> privateGrades;
         private readonly ObservableCollection<StudentModel> privateStudents;
         private readonly ObservableCollection<StudentsGradesModel> privateStudentsGrades;
-        private readonly ObservableCollection<StudentsGradesModel> privateSelectedStudentsGrades = new ObservableCollection<StudentsGradesModel>();
 
-        public StudentsViewModel()
+        public StudentsViewModel1()
         {
             dal = new DAL();
             privateGrades = dal.LoadGrades();
@@ -32,7 +26,6 @@ namespace MaterialDesignFixedHintTextBox.ViewModels
             Grades = privateGrades.AsReadOnly();
             Students = new ReadOnlyObservableCollection<StudentModel>(privateStudents);
             StudentsGrades = new ReadOnlyObservableCollection<StudentsGradesModel>(privateStudentsGrades);
-            SelectedStudentsGrades = new ReadOnlyObservableCollection<StudentsGradesModel>(privateSelectedStudentsGrades);
         }
 
         public StudentModel SelectedStudent { get => Get<StudentModel>(); set => Set(value); }
@@ -54,41 +47,5 @@ namespace MaterialDesignFixedHintTextBox.ViewModels
 
         public RelayCommand AddCommand => GetCommand<string>(text => MessageBox.Show($"Click: {text}"));
 
-        private void RefreshSelectedStudentsGrade(int? studentId)
-        {
-            if (studentId is null)
-            {
-                privateSelectedStudentsGrades.Clear();
-                return;
-            }
-            int id = studentId.Value;
-            int i = 0;
-            foreach (var studGrade in privateStudentsGrades.Where(sg => sg.StudentID == id))
-            {
-                if (i < privateSelectedStudentsGrades.Count)
-                {
-                    privateSelectedStudentsGrades[i] = studGrade;
-                }
-                else
-                {
-                    privateSelectedStudentsGrades.Add(studGrade);
-                }
-                i++;
-            }
-            while (i < privateSelectedStudentsGrades.Count)
-            {
-                privateSelectedStudentsGrades.RemoveAt(privateSelectedStudentsGrades.Count - 1);
-            }
-            SelectedStudentsGrade = SelectedStudentsGrades.Count > 0 ? SelectedStudentsGrades[0] : null;
-        }
-
-        protected override void OnPropertyChanged(string propertyName, object oldValue, object newValue)
-        {
-            base.OnPropertyChanged(propertyName, oldValue, newValue);
-            if (propertyName == nameof(SelectedStudent))
-            {
-                RefreshSelectedStudentsGrade((newValue as StudentModel)?.Id);
-            }
-        }
     }
 }

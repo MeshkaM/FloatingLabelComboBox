@@ -1,0 +1,112 @@
+﻿<Window x:Class="MaterialDesignFixedHintTextBox.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MaterialDesignFixedHintTextBox"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:materialdesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:viewmodels="clr-namespace:MaterialDesignFixedHintTextBox.ViewModels"
+        xmlns:cc="clr-namespace:CustomControls"
+        mc:Ignorable="d"
+        DataContext="{DynamicResource vm}">
+    <Window.Resources>
+        <viewmodels:StudentsViewModel1 x:Key="vm"/>
+        <sys:Int32 x:Key="inc">1</sys:Int32>
+        <sys:Int32 x:Key="dec">-1</sys:Int32>
+        <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource {x:Type ComboBox}}">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="materialdesign:HintAssist.IsFloating" Value="True"/>
+            <Setter Property="materialdesign:ColorZoneAssist.Mode" Value="Dark"/>
+            <Setter Property="materialdesign:HintAssist.HintOpacity" Value="1"/>
+            <Setter Property="materialdesign:HintAssist.FontFamily" Value="Century Gothic"/>
+            <Setter Property="materialdesign:HintAssist.Foreground" Value="LimeGreen"/>
+            <Setter Property="Foreground" Value="AliceBlue"/>
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+
+        <DataTemplate x:Key="Button.Template.Trasparent">
+            <Button Content="{Binding}"
+                    CommandParameter="{Binding}"
+                    Command="{Binding AddCommand, Mode=OneWay, Source={StaticResource vm}}"
+                    Foreground="Yellow">
+                <Button.Template>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Background="Transparent">
+                            <ContentPresenter Focusable="False"
+                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                              Margin="{TemplateBinding Padding}"
+                              RecognizesAccessKey="True"
+                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF06013F" Offset="1"/>
+                <GradientStop Color="#FF040F2E"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <StackPanel Margin="40">
+            <Label Content="Students Grade" Foreground="WhiteSmoke" FontSize="20"/>
+            <UniformGrid Rows="1" Margin="5 30 0 0" Height="80">
+                <cc:ExtentedComboBox ItemsSource="{Binding Students}"
+                                     materialdesign:HintAssist.Hint="Student"
+                                     SelectedItem="{Binding SelectedStudent}"
+                                     SelectedIndex="0"
+                                     DisplayMemberPath="StudentName"
+                                     AddingContent="Add new Student"
+                                     AddingContentTemplate="{DynamicResource Button.Template.Trasparent}"
+                                     SelectionChanged="OnSelectionStudentChanged"/>
+
+                <cc:ExtentedComboBox x:Name="studentsGradesCBox"
+                                     ItemsSource="{Binding StudentsGrades}"
+                                     SelectedItem="{Binding SelectedStudentsGrade}"
+                                     SelectedIndex="0"
+                                     materialdesign:HintAssist.Hint="Student Grades"
+                                     AddingContent="Add a grade to a Student"
+                                     AddingContentTemplate="{DynamicResource Button.Template.Trasparent}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0}: {1}">
+                                        <Binding Path="Subject"/>
+                                        <Binding Path="StudentsGrade"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </cc:ExtentedComboBox>
+
+                <cc:ExtentedComboBox ItemsSource="{Binding Grades}"
+                                     materialdesign:HintAssist.Hint="Student Grades"
+                                     SelectedItem="{Binding SelectedStudentsGrade.StudentsGrade}"/>
+            </UniformGrid>
+            <StackPanel Orientation="Horizontal">
+                <RepeatButton
+                    Width="25" Height="25"
+                    Command="{Binding RepeatGrade}"
+                    CommandParameter="{StaticResource dec}"
+                    >
+                    <materialdesign:PackIcon Kind="NavigateBefore" Width="30" Height="30" Margin="-20 -5 0 0"/>
+                </RepeatButton>
+                <RepeatButton
+                    Width="25" Height="25"
+                    Command="{Binding RepeatGrade}"
+                    CommandParameter="{StaticResource inc}"
+                    Margin="20 0 0 0"
+                            >
+                    <materialdesign:PackIcon Kind="NavigateNext" Width="30" Height="30" Margin="-20 -5 0 0"/>
+                </RepeatButton>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

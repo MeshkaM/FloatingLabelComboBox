@@ -6,7 +6,7 @@
         xmlns:materialdesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:viewmodels="clr-namespace:MaterialDesignFixedHintTextBox.ViewModels"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
-        xmlns:cc="clr-namespace:FloatingHintAssistComboBox.CustomControls"
+        xmlns:cc="clr-namespace:CustomControls"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
         DataContext="{DynamicResource vm}">

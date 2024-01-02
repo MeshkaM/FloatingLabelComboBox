@@ -89,13 +89,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="CustomControls\FloatingHintAssistComboBox.CommandSource.cs" />
+    <Compile Include="CustomControls\ExtentedComboBox\ExtentedComboBox.AddingElemenf.cs" />
+    <Compile Include="CustomControls\ExtentedComboBox\ExtentedComboBox.cs" />
+    <Compile Include="CustomControls\FloatingHintAssistComboBox\FloatingHintAssistComboBox.CommandSource.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ViewModels\StudentsViewModel.cs" />
-    <Page Include="CustomControls\FloatingHintAssistComboBox.Template.xaml">
+    <Compile Include="ViewModels\StudentsViewModel1.cs" />
+    <Compile Include="Window1.xaml.cs">
+      <DependentUpon>Window1.xaml</DependentUpon>
+    </Compile>
+    <Page Include="CustomControls\ExtentedComboBox\ExtentedComboBox.Template.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControls\FloatingHintAssistComboBox\FloatingHintAssistComboBox.Template.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
@@ -111,9 +121,13 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="CustomControls\FloatingHintAssistComboBox.cs" />
+    <Compile Include="CustomControls\FloatingHintAssistComboBox\FloatingHintAssistComboBox.cs" />
     <Compile Include="Models\DAL.cs" />
     <Compile Include="MainViewModel.cs" />
+    <Page Include="Window1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\StudentsGradesModel.cs" />

@@ -3,6 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:FloatingLabelComboBox">
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/MaterialDesignFixedHintTextBox;component/CustomControls/FloatingHintAssistComboBox.Template.xaml"/>
-    </ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignFixedHintTextBox;component/CustomControls/FloatingHintAssistComboBox/FloatingHintAssistComboBox.Template.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignFixedHintTextBox;component/CustomControls/ExtentedComboBox/ExtentedComboBox.Template.xaml"/>
+   </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
