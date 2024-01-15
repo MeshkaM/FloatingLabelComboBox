@@ -1,9 +1,8 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-     xmlns:materialdesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:materialdesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:local="clr-namespace:FloatingLabelComboBox">
-
 
     <Style TargetType="{x:Type local:CustomControls.FloatingLabelComboBox}">
         <Setter Property="Template">
@@ -18,14 +17,15 @@
                         />
 
                         <ComboBox x:Name="comboBox"
-                                  Text="{TemplateBinding Text}"
                                   ItemsSource="{TemplateBinding ItemsSource}"
                                   SelectedItem="{TemplateBinding SelectedItem}"
                                   SelectedValuePath="{TemplateBinding SelectedValuePath}"
-                                  SelectedValue="{TemplateBinding SelectedValue}" 
+                                  SelectedValue="{TemplateBinding SelectedValue}"
                                   DisplayMemberPath="{TemplateBinding DisplayMemberPath}"
                                   HorizontalAlignment="Stretch"
                                   VerticalAlignment="Center"
+                                  Width="Auto"
+                                  Height="Auto"
                                   materialdesign:HintAssist.IsFloating="False"
                                   materialdesign:ColorZoneAssist.Mode="Dark"
                                   materialdesign:HintAssist.HintOpacity="0.10"

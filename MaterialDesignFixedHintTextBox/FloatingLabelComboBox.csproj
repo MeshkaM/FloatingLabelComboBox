@@ -109,6 +109,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\CountriesModel.cs" />
+    <Compile Include="Models\DistrictsModel.cs" />
+    <Compile Include="Models\PlacesOfInterest.cs" />
+    <Compile Include="Models\ProvincesModel.cs" />
     <Compile Include="Models\StudentsGradesModel.cs" />
     <Compile Include="Models\StudentModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

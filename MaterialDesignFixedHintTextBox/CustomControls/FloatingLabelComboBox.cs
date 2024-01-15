@@ -23,12 +23,12 @@ namespace FloatingLabelComboBox.CustomControls
         }
 
         public static readonly DependencyProperty LabelForegroundProperty =
-            DependencyProperty.Register("LabelForeground", typeof(Brush), typeof(FloatingLabelComboBox), new PropertyMetadata(Brushes.AliceBlue));
+            DependencyProperty.Register("LabelForeground", typeof(Brush), typeof(FloatingLabelComboBox), new PropertyMetadata(new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFD6931B"))));
 
         public Brush LabelForeground
         {
             get { return (Brush)GetValue(LabelForegroundProperty); }
-            set { SetValue(LabelForegroundProperty, value); }
+            set { SetValue(LabelForegroundProperty, value); } 
         }
 
 
@@ -120,7 +120,6 @@ namespace FloatingLabelComboBox.CustomControls
         {
             RaiseEvent(new RoutedEventArgs(SelectionChangedEvent, this));
         }
-
 
 
         //******************************************************************************************************************************************************************************************************************************************************************************
